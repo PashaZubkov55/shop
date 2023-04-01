@@ -7,7 +7,7 @@ import Poster from '../Poster/Poster';
 import Categories from "../Categories/Categories";
 import Products from "../Products/Products";
 import Banner from "../Banner/Banner";
-;
+
 
 
 const Home = () => {
