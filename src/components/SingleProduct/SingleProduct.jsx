@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../features/api/apiSlice";
 import { ROUTES } from "../../utils/routes";
 import Product from "../Product/Product";
+import Products from "../Products/Products";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -27,6 +28,7 @@ const SingleProduct = () => {
   ) : (
     <>
       <Product {...data} />
+  
     
     </>
   );
