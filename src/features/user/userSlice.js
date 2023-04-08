@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../utils/constants";
-/*
-export const getCategories = createAsyncThunk(
-  "categories/getCategories",
-  async (_, thunkAPI) => {
+
+export const createUser = createAsyncThunk(
+  "users/createUser",
+  async (payload, thunkAPI) => {
     try {
-      const res = await axios(`${BASE_URL}/categories`);
+      const res = await axios.post(`${BASE_URL}/users`,payload);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -14,13 +14,15 @@ export const getCategories = createAsyncThunk(
     }
   }
 );
-*/
+
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: [],
+    currentUser: {},
     cart:[],
+    formType: "signup",
+    showForm: false,
     isLoading: false,
   },
   reducers:{
@@ -38,9 +40,17 @@ const userSlice = createSlice({
   
         state.cart = newCart;
       },
-  }
+      togleForm: (state, {payload})=>{
+        state.showForm = payload
+      }
+  }, 
+  extraReducers: (builder)=>{
 
+    builder.addCase(createUser.fulfilled, (state, {payload})=>{
+      state.currentUser = payload
+    })
+  }
 });
 
 export default userSlice.reducer;
-export const {addItemToCart} = userSlice.actions
+export const {addItemToCart, togleForm} = userSlice.actions
