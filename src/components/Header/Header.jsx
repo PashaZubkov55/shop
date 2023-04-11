@@ -7,11 +7,14 @@ import LOGO from "../../images/logo.svg";
 import avatar from '../../images/avatar.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import { togleForm } from '../../features/user/userSlice';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 const Header = ()=>{
     const {currentUser} = useSelector(({user})=>user)
     const dispatch = useDispatch();
+    const [values, setValues] = useState({name:'Guest', avatar : avatar})
     const handleClick = ()=>{
         if (!currentUser) {
             dispatch(togleForm(true))
@@ -20,8 +23,12 @@ const Header = ()=>{
             dispatch(togleForm(false))
 
         }
-
     }
+    useEffect(()=>{
+            if (!currentUser) return 
+            setValues(currentUser)
+    },[currentUser])
+
     return (
     <div className={styles.header}>
         <div className={styles.logo}>
@@ -34,10 +41,10 @@ const Header = ()=>{
             <div className={styles.user} onClick={handleClick}>
             
             <div className={styles.avatar} 
-            style={{backgroundImage: `url(${avatar})`}}
+            style={{backgroundImage: `url(${values.avatar})`}}
             
             />
-                 <div className={styles.username}>Guest</div>
+                 <div className={styles.username}>{values.name}</div>
 
             
             </div>
