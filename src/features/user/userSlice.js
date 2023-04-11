@@ -19,7 +19,7 @@ export const createUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: {},
+    currentUser: null,
     cart:[],
     formType: "signup",
     showForm: false,
