@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 import styles from '../../styles/Header.module.css'
 import { ROUTES } from '../../utils/routes'
 
@@ -14,15 +14,15 @@ import { useState,  useEffect} from 'react';
 const Header = ()=>{
     const {currentUser} = useSelector(({user})=>user)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const [values, setValues] = useState({name:'Guest', avatar : avatar})
     const handleClick = ()=>{
-        if (!currentUser) {
-            dispatch(togleForm(true))
+        if (!currentUser) 
+            dispatch(togleForm(true)) ;
+            else navigate(ROUTES.PROFILE);
 
-        } else{
-            dispatch(togleForm(false))
-
-        }
+        
     }
     useEffect(()=>{
             if (!currentUser) return 
