@@ -7,8 +7,8 @@ import LOGO from "../../images/logo.svg";
 import avatar from '../../images/avatar.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import { togleForm } from '../../features/user/userSlice';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState,  useEffect} from 'react';
+
 
 
 const Header = ()=>{

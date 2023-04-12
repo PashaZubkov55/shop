@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../features/user/userSlice";
+import { loginUser } from "../../features/user/userSlice";
 import styles from '../../styles/User.module.css'
 
-const UserSignupForm= ({togleCurrentFormType, closeForm})=>{
+const UserLoginForm= ({  togleCurrentFormType, closeForm})=>{
     const Dispatch = useDispatch()
     const [values, setValues] = useState({
-        name: "",
         email: "",
         password: "",
-        avatar: "",
+      
       });
        // оживления инпутов
       const handleChange = ({ target: { value, name } }) => {
@@ -22,7 +21,7 @@ const UserSignupForm= ({togleCurrentFormType, closeForm})=>{
 
             if (!isNotEmpty) return;
 
-            Dispatch(createUser(values));
+            Dispatch(loginUser(values));
             
             closeForm();
                 
@@ -37,7 +36,7 @@ const UserSignupForm= ({togleCurrentFormType, closeForm})=>{
             </svg>
           </div>
     
-          <div className={styles.title}>Sign Up</div>
+          <div className={styles.title}>Log In</div>
     
           <form className={styles.form}  onSubmit = {handlSubmit}>
             <div className={styles.group}>
@@ -52,17 +51,6 @@ const UserSignupForm= ({togleCurrentFormType, closeForm})=>{
               />
             </div>
     
-            <div className={styles.group}>
-              <input
-                type="name"
-                placeholder="Your name"
-                name="name"
-                value={values.name}
-                autoComplete="off"
-                onChange={handleChange}
-                required
-              />
-            </div>
     
             <div className={styles.group}>
               <input
@@ -76,31 +64,22 @@ const UserSignupForm= ({togleCurrentFormType, closeForm})=>{
               />
             </div>
     
-            <div className={styles.group}>
-              <input
-                type="avatar"
-                placeholder="Your avatar"
-                name="avatar"
-                value={values.avatar}
-                autoComplete="off"
-                onChange={handleChange}
-                required
-              />
-            </div>
+           
     
             <div
               className={styles.link}
-              onClick= {()=>togleCurrentFormType('login')}
+
+              onClick= {()=>togleCurrentFormType('signup')}
             >
-              I already have an account
+              Create in account
             </div>
     
             <button type="submit" className={styles.submit}>
-              Create an account
+            Login
             </button>
           </form>
         </div>
       );
 }
 
-export default UserSignupForm
+export default UserLoginForm
