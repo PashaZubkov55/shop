@@ -20,7 +20,6 @@ const Header = ()=>{
     const [values, setValues] = useState({name:'Guest', avatar : avatar})
     const [searchValue, setSearchValue] = useState('')
     const {data, isLoading} = useGetProductsQuery({title: searchValue});
-    console.log(data)
     const handleClick = ()=>{
         if (!currentUser) 
             dispatch(togleForm(true)) ;
@@ -72,7 +71,23 @@ const Header = ()=>{
                       />
                 </div>
 
-               { false && <div className={styles.box}></div>}
+               { searchValue && <div className={styles.box}>
+                {isLoading? 'Loading': !data.length ? 'No resoults': (
+                    data.map(({title, images, id })=>{
+                        return (
+                            <Link 
+                            to= {`/products/${id}`} 
+                            onClick={()=>{setSearchValue('')}} 
+                            key={id}
+                            >
+                            <div className= {styles.image} style={{backgroundImage: `url(${images[0]})`}} />
+                             <div className= {styles.title}>{title}</div>
+                            </Link>
+                        )
+                    })
+                ) }
+                
+                </div>}
 
             </form>
             <div className={styles.account}>
