@@ -8,6 +8,7 @@ import avatar from '../../images/avatar.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import { togleForm } from '../../features/user/userSlice';
 import { useState,  useEffect} from 'react';
+import { useGetProductsQuery } from '../../features/api/apiSlice';
 
 
 
@@ -17,6 +18,9 @@ const Header = ()=>{
     const navigate = useNavigate()
 
     const [values, setValues] = useState({name:'Guest', avatar : avatar})
+    const [searchValue, setSearchValue] = useState('')
+    const {data, isLoading} = useGetProductsQuery({title: searchValue});
+    console.log(data)
     const handleClick = ()=>{
         if (!currentUser) 
             dispatch(togleForm(true)) ;
@@ -24,6 +28,7 @@ const Header = ()=>{
 
         
     }
+    const handleSearch = (e)=>{setSearchValue(e.target.value)}
     useEffect(()=>{
             if (!currentUser) return 
             setValues(currentUser)
@@ -62,8 +67,8 @@ const Header = ()=>{
                      name= 'Поиск'
                       placeholder='Поиск...'
                       autoComplete='off'
-                      onChange={()=>{}}
-                      value = ''
+                        onChange={handleSearch}
+                      value = {searchValue}
                       />
                 </div>
 
