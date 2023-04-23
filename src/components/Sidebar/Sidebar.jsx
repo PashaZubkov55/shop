@@ -6,20 +6,19 @@ import styles from "../../styles/Sidebar.module.css";
 
 const Sidebar = () => {
   const { list } = useSelector(({ categories }) => categories);
-  
 
   return (
     <section className={styles.sidebar}>
       <div className={styles.title}>CATEGORIES</div>
       <nav>
         <ul className={styles.menu}>
-        {list.map(({ id, name }) => (
+          {list.map(({ id, name }) => (
             <li key={id}>
               <NavLink
                 className={({ isActive }) =>
                   `${styles.link} ${isActive ? styles.active : ""}`
                 }
-                to={`/category/${id}`}
+                to={`/categories/${id}`}
               >
                 {name}
               </NavLink>

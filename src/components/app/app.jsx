@@ -5,12 +5,11 @@ import AppRoutes from "../Routes/Routes";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
-import UserForm from "../User/UserForm";
-
 
 import { getCategories } from "../../features/categories/categoriesSlice";
-import { getProducts } from "../../features/products/ProductsSlice";
+import { getProducts } from "../../features/products/productsSlice";
 
+import UserForm from "../User/UserForm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <UserForm/>
+      <UserForm />
       <div className="container">
         <Sidebar />
         <AppRoutes />
