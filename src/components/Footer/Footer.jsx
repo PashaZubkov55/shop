@@ -16,9 +16,9 @@ const Footer = () => (
 
     <div className={styles.rights}>
       Developed by{" "}
-      <a href="https://youtube.com/Tomkovich" target="_blank" rel="noreferrer">
+     
         Pavel Zubkov
-      </a>
+      
     </div>
 
     <div className={styles.socials}>
